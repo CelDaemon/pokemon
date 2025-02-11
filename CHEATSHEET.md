@@ -41,3 +41,32 @@ val javaClazz = obj::class.java
 // Check the type of 'obj'.
 if(obj !is String) println("obj is not a string!")
 ```
+
+## Assignment 2
+
+### What is composition, and why do we use it?
+
+Composition is a relationship between objects where one object is "composed" of multiple other objects.
+This is used to model situations where one thing contains another, 
+such as a house containing multiple rooms, and those rooms containing different furniture.
+
+Composition is different from inheritance, having an object "contain" something instead of "being" something, 
+this way complex relationships between objects can be defined.
+
+
+### How to use composition
+
+Composition can be used by adding fields to a class, in kotlin this is done like this:
+
+```kotlin
+class Person(val name: String, val age: Number)
+```
+
+In this case, the `Person` class is composed of two fields, a name (`String`) and an age (`Number`).
+
+It is also possible to have more complex relationships this way, such as a person having multiple pets, and those pets having multiple owners:
+
+```kotlin
+class Pet(val name: String, val owner: ArrayList<Person>)
+class Person(val name: String, val age: Number, val pets: ArrayList<Pet>)
+```

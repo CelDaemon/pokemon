@@ -70,3 +70,32 @@ It is also possible to have more complex relationships this way, such as a perso
 class Pet(val name: String, val owner: ArrayList<Person>)
 class Person(val name: String, val age: Number, val pets: ArrayList<Pet>)
 ```
+
+## Assignment 3
+
+Inheritance is the concept of a class "inheriting" fields and methods from another class. This way a class can be defined as "being" something else.
+
+Another reason to use inheritance is to share behaviours across multiple classes, while still having differences in the implementation of some of the functions.
+
+A common example of this, is how both a `Cat` and a `Dog` are an `Animal`, and share certain behaviours, in kotlin this could be:
+
+```kotlin
+abstract class Animal {
+    fun eat() {
+        makeSound()
+        println("Eating...")
+    }
+    abstract fun makeSound()
+}
+class Cat {
+    override fun makeSound() {
+        println("Meow!")
+    }
+}
+class Dog {
+    override fun makeSound() {
+        println("Woof!")
+    }
+}
+```
+

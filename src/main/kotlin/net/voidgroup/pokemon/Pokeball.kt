@@ -1,16 +1,15 @@
 package net.voidgroup.pokemon
 
-data class Pokeball(private val charmander: Charmander) {
+data class Pokeball(val pokemon: Pokemon) {
     private var open = false
 
-    fun open(): Charmander {
+    fun open(): Pokemon {
         if(open) throw IllegalStateException("Pokeball is already open")
         open = true
-        return charmander
+        return pokemon
     }
     fun close() {
         if(!open) throw IllegalStateException("Pokeball is already closed")
         open = false
     }
-
 }

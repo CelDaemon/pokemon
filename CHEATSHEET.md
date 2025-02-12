@@ -99,3 +99,14 @@ class Dog {
 }
 ```
 
+In kotlin, it is also possible to inherit properties, and declare them as abstract for implementation by a subclass.
+
+```kotlin
+abstract class Pokemon {
+    abstract val strength: Element
+}
+class Charmander : Pokemon() {
+    override val strength: Element
+        get() = Element.FIRE
+}
+```

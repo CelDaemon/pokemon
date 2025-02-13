@@ -21,14 +21,12 @@ fun main() {
     do {
         printHeader("SETUP")
         val challenger = Trainer(
-            readName("Enter the name for the ${coloredString("challenger", Color.BRIGHT_BLUE)}"),
-            Color.BRIGHT_BLUE
+            readName("Enter the name for the ${coloredString("challenger", Color.BRIGHT_BLUE)}"), Color.BRIGHT_BLUE
         )
 
         addPokeballs(challenger)
         val opponent = Trainer(
-            readName("Enter the name for the ${coloredString("opponent", Color.BRIGHT_RED)}"),
-            Color.BRIGHT_RED
+            readName("Enter the name for the ${coloredString("opponent", Color.BRIGHT_RED)}"), Color.BRIGHT_RED
         )
         addPokeballs(opponent)
 

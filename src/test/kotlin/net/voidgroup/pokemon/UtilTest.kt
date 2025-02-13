@@ -1,7 +1,8 @@
 package net.voidgroup.pokemon
 
 import org.junit.jupiter.api.Test
-import kotlin.test.*
+import kotlin.test.assertEquals
+import kotlin.test.assertNull
 
 class UtilTest {
 

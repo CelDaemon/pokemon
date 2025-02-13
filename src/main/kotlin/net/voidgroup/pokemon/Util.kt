@@ -32,8 +32,7 @@ fun printHeader(title: String) {
     println(
         "\n${coloredString("===================", Color.BRIGHT_BLACK)} ${
             coloredString(
-                title,
-                Color.BRIGHT_GREEN
+                title, Color.BRIGHT_GREEN
             )
         } ${coloredString("===================", Color.BRIGHT_BLACK)}"
     )

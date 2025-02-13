@@ -8,10 +8,12 @@ import kotlin.test.assertFailsWith
 class PokemonTest {
     private val trainer = Trainer("Test", Color.PURPLE)
     private lateinit var pokeball: Pokeball
+
     @BeforeEach
     fun setupPokeball() {
         pokeball = Pokeball(Charmander("Charmander", trainer))
     }
+
     @Test
     fun `Opening an already opened pokeball throws an exception`() {
         pokeball.open()

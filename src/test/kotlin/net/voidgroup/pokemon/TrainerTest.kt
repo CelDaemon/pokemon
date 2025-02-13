@@ -1,5 +1,6 @@
 package net.voidgroup.pokemon
 
+import net.voidgroup.pokemon.type.Charmander
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import kotlin.test.assertFailsWith
@@ -10,7 +11,7 @@ class TrainerTest {
     @BeforeEach
     fun setupTrainer() {
         trainer = Trainer("Test Trainer", Color.PURPLE)
-        trainer.addPokeballs(listOf(Pokeball(Charmander("Test Charmander"))))
+        trainer.addPokeballs(listOf(Pokeball(Charmander("Test Charmander", trainer))))
     }
 
     @Test
@@ -18,12 +19,12 @@ class TrainerTest {
         assertFailsWith<UnsupportedOperationException> {
             trainer.addPokeballs(
                 listOf(
-                    Pokeball(Charmander("Test Charmander")),
-                    Pokeball(Charmander("Test Charmander")),
-                    Pokeball(Charmander("Test Charmander")),
-                    Pokeball(Charmander("Test Charmander")),
-                    Pokeball(Charmander("Test Charmander")),
-                    Pokeball(Charmander("Test Charmander"))
+                    Pokeball(Charmander("Test Charmander", trainer)),
+                    Pokeball(Charmander("Test Charmander", trainer)),
+                    Pokeball(Charmander("Test Charmander", trainer)),
+                    Pokeball(Charmander("Test Charmander", trainer)),
+                    Pokeball(Charmander("Test Charmander", trainer)),
+                    Pokeball(Charmander("Test Charmander", trainer))
                 )
             )
         }

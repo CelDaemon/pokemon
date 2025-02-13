@@ -1,15 +1,16 @@
 package net.voidgroup.pokemon
 
-import net.voidgroup.pokemon.Arena.battleCount
-import net.voidgroup.pokemon.Arena.roundCount
+import net.voidgroup.pokemon.type.Bulbasaur
+import net.voidgroup.pokemon.type.Charmander
+import net.voidgroup.pokemon.type.Squirtle
 
 fun addPokeballs(trainer: Trainer) {
     trainer.addPokeballs(List(6) { i ->
         Pokeball(
             when (i % 3) {
-                0 -> Charmander("Charmander ${1 + i / 3}")
-                1 -> Squirtle("Squirtle ${1 + i / 3}")
-                2 -> Bulbasaur("Bulbasaur ${1 + i / 3}")
+                0 -> Charmander("Charmander ${1 + i / 3}", trainer)
+                1 -> Squirtle("Squirtle ${1 + i / 3}", trainer)
+                2 -> Bulbasaur("Bulbasaur ${1 + i / 3}", trainer)
                 else -> throw UnsupportedOperationException()
             }
         )
@@ -37,7 +38,7 @@ fun main() {
 
     printHeader("STATS")
 
-    println("Total battles: ${coloredString(battleCount.toString(), Color.BRIGHT_GREEN)}")
-    println("Total rounds: ${coloredString(roundCount.toString(), Color.BRIGHT_GREEN)}")
+    println("Total battles: ${coloredString(Arena.battleCount.toString(), Color.BRIGHT_GREEN)}")
+    println("Total rounds: ${coloredString(Arena.roundCount.toString(), Color.BRIGHT_GREEN)}")
 }
 

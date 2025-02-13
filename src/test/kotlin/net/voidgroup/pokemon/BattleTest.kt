@@ -31,6 +31,5 @@ class BattleTest {
     @Test
     fun `Opponent with the same strength as the challenger's weakness wins`() {
         assertEquals(Battle.BattleResult.OPPONENT, Battle.check(Charmander("Challenger"), Squirtle("Opponent")))
-        mutableListOf(1).removeAt(2)
     }
 }

@@ -21,7 +21,7 @@ class PokemonTest {
     @Test
     fun `Closing an already closed pokeball throws an exception`() {
         assertFailsWith(IllegalStateException::class) {
-            pokeball.close()
+            pokeball.close(Charmander("Charmander"))
         }
     }
 }

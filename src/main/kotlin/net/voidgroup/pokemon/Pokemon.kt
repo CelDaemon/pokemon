@@ -1,10 +1,20 @@
 package net.voidgroup.pokemon
 
-abstract class Pokemon(val nickname: String) {
+abstract class Pokemon(private val nickname: String) {
     abstract val strength: Element
     abstract val weakness: Element
     abstract val name: String
+    var fainted: Boolean = false
+    var owner: Trainer? = null
+    val displayName
+        get() = "${owner?.color ?: ""}$nickname${Color.RESET}"
+
+    fun faint() {
+        println("'$displayName' fainted!")
+        fainted = true
+    }
+
     fun battleCry() {
-        println("[$nickname]: $name!")
+        println("'$displayName' says: $name!")
     }
 }

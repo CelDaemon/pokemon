@@ -1,23 +1,43 @@
 package net.voidgroup.pokemon
 
-fun makeBelt(): MutableList<Pokeball> = MutableList(6) { i ->
-    when (i % 3) {
-        0 -> Pokeball(Charmander("Charmander ${1 + i / 3}"))
-        1 -> Pokeball(Squirtle("Squirtle ${1 + i / 3}"))
-        2 -> Pokeball(Bulbasaur("Bulbasaur ${1 + i / 3}"))
-        else -> throw RuntimeException()
-    }
+import net.voidgroup.pokemon.Arena.battleCount
+import net.voidgroup.pokemon.Arena.roundCount
+
+fun addPokeballs(trainer: Trainer) {
+    trainer.addPokeballs(List(6) { i ->
+        Pokeball(
+            when (i % 3) {
+                0 -> Charmander("Charmander ${1 + i / 3}")
+                1 -> Squirtle("Squirtle ${1 + i / 3}")
+                2 -> Bulbasaur("Bulbasaur ${1 + i / 3}")
+                else -> throw UnsupportedOperationException()
+            }
+        )
+    })
 }
 
 fun main() {
     do {
-        val challengerName = Input.readName("Enter the name for the challenger")
-        val challenger = Trainer(challengerName, makeBelt())
-        val opponentName = Input.readName("Enter the name for the opponent")
-        val opponent = Trainer(opponentName, makeBelt())
+        printHeader("SETUP")
+        val challenger = Trainer(
+            readName("Enter the name for the ${coloredString("challenger", Color.BRIGHT_BLUE)}"),
+            Color.BRIGHT_BLUE
+        )
 
-        Battle(challenger, opponent).start()
+        addPokeballs(challenger)
+        val opponent = Trainer(
+            readName("Enter the name for the ${coloredString("opponent", Color.BRIGHT_RED)}"),
+            Color.BRIGHT_RED
+        )
+        addPokeballs(opponent)
 
-    } while (Input.readBoolean("Do you want to restart?"))
+        Arena.fight(challenger, opponent)
+
+    } while (readBoolean("Do you want to restart?"))
+
+    printHeader("STATS")
+
+    println("Total battles: ${coloredString(battleCount.toString(), Color.BRIGHT_GREEN)}")
+    println("Total rounds: ${coloredString(roundCount.toString(), Color.BRIGHT_GREEN)}")
 }
 

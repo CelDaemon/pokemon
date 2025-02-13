@@ -1,15 +1,18 @@
 package net.voidgroup.pokemon
 
-data class Pokeball(val pokemon: Pokemon) {
-    private var open = false
+data class Pokeball(var pokemon: Pokemon?) {
 
     fun open(): Pokemon {
-        if(open) throw IllegalStateException("Pokeball is already open")
-        open = true
-        return pokemon
+        val currentPokemon = pokemon ?: throw IllegalStateException("Pokeball is empty")
+        pokemon = null
+        println("'${currentPokemon.displayName}' emerged!")
+        currentPokemon.battleCry()
+        return currentPokemon
     }
-    fun close() {
-        if(!open) throw IllegalStateException("Pokeball is already closed")
-        open = false
+
+    fun close(newPokemon: Pokemon) {
+        if (pokemon != null) throw IllegalStateException("Pokeball is not empty")
+        pokemon = newPokemon
+        println("'${newPokemon.displayName}' returned to the pokeball")
     }
 }

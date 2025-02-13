@@ -1,15 +1,17 @@
 package net.voidgroup.pokemon
 
-class Trainer(val name: String, belt: MutableList<Pokeball>) {
-    companion object {
-        private const val MAX_SIZE = 6
-    }
-    init {
-        if(belt.size > MAX_SIZE) throw IllegalArgumentException("The belt cannot be bigger than $MAX_SIZE pokeballs")
-    }
-    private val _belt: MutableList<Pokeball> = belt
+val CHALLENGER_COLOR = Color.BRIGHT_BLUE
+val OPPONENT_COLOR = Color.BRIGHT_RED
 
-    val belt: List<Pokeball> = _belt
+class Trainer(private val name: String, val color: Color) {
+    val belt: MutableList<Pokeball> = mutableListOf()
 
-    fun throwBall(): Pokeball? = _belt.removeFirstOrNull()
+    val displayName: String
+        get() = "$color$name${Color.RESET}"
+
+    fun addPokeballs(pokeballs: Collection<Pokeball>) {
+        if (belt.size + pokeballs.size > 6) throw UnsupportedOperationException("The belt cannot contain more than 6 pokeballs")
+        for (pokeball in pokeballs) pokeball.pokemon?.owner = this
+        belt.addAll(pokeballs)
+    }
 }

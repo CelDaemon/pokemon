@@ -1,7 +1,7 @@
 package net.voidgroup.pokemon
 
 enum class Element {
-    Fire,
-    Water,
-    Leaf
+    FIRE,
+    WATER,
+    LEAF
 }

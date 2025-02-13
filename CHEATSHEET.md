@@ -110,3 +110,28 @@ class Charmander : Pokemon() {
         get() = Element.FIRE
 }
 ```
+
+## Assignment 4
+
+Static variables are a way to store data that is not specific to any one instance of a class, but is instead shared between all instances.
+This way, it is possible to access and modify these variables without making an instance of the class the field belongs to.
+
+However, this kind of code should generally be avoided as it is difficult to test and can cause code to become too coupled.
+
+In kotlin, static variables are different from java, as static and non-static variables cannot be mixed.
+Instead, they are separated between multiple types of classes, a `class` and an `object`.
+
+Normal classes can also still have static members, however they will need to be inserted into a `companion object`. 
+
+Using static properties and functions in kotlin can be done as follows:
+
+```kotlin
+object StaticClass {
+    var staticField: String? = null
+}
+class Class {
+    companion object {
+        var staticField: String? = null
+    }
+}
+```

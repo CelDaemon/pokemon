@@ -2,9 +2,9 @@ package net.voidgroup.pokemon
 
 class Squirtle(nickname: String) : Pokemon(nickname) {
     override val strength: Element
-        get() = Element.Water
+        get() = Element.WATER
     override val weakness: Element
-        get() = Element.Leaf
+        get() = Element.LEAF
     override val name: String
         get() = "Squirtle"
 }

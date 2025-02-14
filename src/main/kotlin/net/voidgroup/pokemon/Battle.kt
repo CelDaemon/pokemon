@@ -20,19 +20,25 @@ class Battle(private val challenger: Trainer, private val opponent: Trainer) {
     private var challengerPokeball: Pokeball? = null
     private var opponentPokeball: Pokeball? = null
 
-    private fun shouldContinue() = (challengerPokeball != null || challenger.belt.filterNot { it.pokemon.fainted }
-        .isNotEmpty()) && (opponentPokeball != null || opponent.belt.filterNot { it.pokemon.fainted }.isNotEmpty())
+    private fun shouldContinue() = challenger.belt.filterNot { it.pokemon.fainted }
+        .isNotEmpty() && opponent.belt.filterNot { it.pokemon.fainted }.isNotEmpty()
+
+    private fun resetTrainers() {
+        for (pokeball in challenger.belt) pokeball.reset()
+        for (pokeball in opponent.belt) pokeball.reset()
+    }
 
     fun fight(): BattleResult {
         Arena.incrementBattles()
-        for (pokeball in challenger.belt) pokeball.pokemon.fainted = false
-        for (pokeball in opponent.belt) pokeball.pokemon.fainted = false
         var i = 0
         while (shouldContinue()) {
             i++
             printHeader("ROUND $i")
             playRound()
         }
+
+        resetTrainers()
+
         if (challengerPokeball == null && opponentPokeball == null) return BattleResult.DRAW
         return if (challengerPokeball == null) BattleResult.OPPONENT else BattleResult.CHALLENGER
     }
@@ -41,14 +47,15 @@ class Battle(private val challenger: Trainer, private val opponent: Trainer) {
         Arena.incrementRounds()
         val currentChallengerPokeball: Pokeball = challengerPokeball?.also {
             println("'${it.pokemon.displayName}' enters the round")
-        } ?: challenger.belt.filterNot { it.pokemon.fainted }.random().let { pokeball ->
+        } ?: challenger.getRandomPokeball().let { pokeball ->
             challengerPokeball = pokeball
             pokeball.open()
             pokeball
         }
+
         val currentOpponentPokeball = opponentPokeball?.also {
             println("'${it.pokemon.displayName}' enters the round")
-        } ?: opponent.belt.filterNot { it.pokemon.fainted }.random().let { pokeball ->
+        } ?: opponent.getRandomPokeball().let { pokeball ->
             opponentPokeball = pokeball
             pokeball.open()
             pokeball

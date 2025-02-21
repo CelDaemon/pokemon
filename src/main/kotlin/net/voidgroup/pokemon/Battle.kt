@@ -64,11 +64,11 @@ class Battle(private val challenger: Trainer, private val opponent: Trainer) {
 
         val result = check(currentChallengerPokeball.pokemon, currentOpponentPokeball.pokemon)
         val (challengerFaint, opponentFaint) = when (result) {
-            BattleResult.OPPONENT -> Pair(false, true)
-            BattleResult.CHALLENGER -> Pair(true, false)
+            BattleResult.CHALLENGER -> Pair(false, true)
+            BattleResult.OPPONENT -> Pair(true, false)
             BattleResult.DRAW -> when (previousResult) {
-                BattleResult.CHALLENGER -> Pair(false, true)
-                BattleResult.OPPONENT -> Pair(true, false)
+                BattleResult.CHALLENGER -> Pair(true, false)
+                BattleResult.OPPONENT -> Pair(false, true)
                 else -> Pair(true, true)
             }
         }
@@ -92,7 +92,7 @@ class Battle(private val challenger: Trainer, private val opponent: Trainer) {
                     )
                 } the round!"
 
-                BattleResult.OPPONENT -> "'${currentChallengerPokeball.pokemon.displayName}' ${
+                BattleResult.OPPONENT -> "'${currentOpponentPokeball.pokemon.displayName}' ${
                     coloredString(
                         "WON", Color.BRIGHT_YELLOW
                     )
